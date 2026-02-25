@@ -31,7 +31,18 @@ def load_listings(f):
     full_path = os.path.join(base_path, f)
 
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
-    pass
+    listings = []
+
+    with open(full_path, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        header = next(reader)  
+    
+        for row in reader:
+            record = dict(zip(header, row))
+            listings.append(record)
+
+    return listings
+
 
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
